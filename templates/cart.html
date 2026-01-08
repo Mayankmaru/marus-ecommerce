@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart | MARUS</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body onload="loadCart()">
+
+<div class="cart-container">
+<h2 class="cart-title">🛒 Your Cart</h2>
+
+<div class="cart-box">
+
+  {% for item in items %}
+  <div class="cart-item">
+    <div>
+      <strong>{{ item.product.name }}</strong><br>
+      ₹ {{ item.product.price }}
+    </div>
+
+    <form method="post" action="{% url 'update_qty' item.id %}">
+      {% csrf_token %}
+      <input type="number" name="quantity"
+             value="{{ item.quantity }}" min="1" style="width:60px;">
+      <button type="submit">Update</button>
+    </form>
+
+    <div>
+      ₹ {{ item.product.price|add:0 }} × {{ item.quantity }}
+    </div>
+  </div>
+  {% endfor %}
+
+  <hr>
+
+  <h3>Total: ₹ {{ total }}</h3>
+
+  <a href="{% url 'checkout' %}">
+    <button class="pay-btn">Proceed to Checkout</button>
+  </a>
+
+</div>
+
+
+</div>
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="hero">
+    <h1>Premium Herbal Oils</h1>
+    <p>Pure • Natural • Trusted</p>
+
+    <ul>
+        <li>🌿 100% Natural</li>
+        <li>🧪 Lab Tested</li>
+        <li>🚚 Fast Delivery</li>
+        <li>⭐ Trusted Quality</li>
+    </ul>
+</div>
+
+<h2 class="section-title">Our Products</h2>
+
+
+{% for p in products %}
+<div class="product-card">
+
+    <!-- PRODUCT IMAGE -->
+    {% if p.image %}
+        <img src="{{ p.image.url }}" alt="{{ p.name }}" class="product-img">
+    {% endif %}
+
+    <!-- PRODUCT NAME -->
+    <h3>{{ p.name }}</h3>
+
+    <!-- PRODUCT PRICE -->
+    <p class="price">₹ {{ p.price }}</p>
+
+    <!-- PRODUCT DESCRIPTION -->
+    <p class="description">
+        {{ p.description }}
+    </p>
+
+    <!-- ADD TO CART -->
+    <form method="post" action="/add/{{ p.id }}/">
+        {% csrf_token %}
+        <button type="submit">Add to Cart</button>
+    </form>
+
+</div>
+{% endfor %}
+
+
+
+
+</div>
+
+{% endblock %}

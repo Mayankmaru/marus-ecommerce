@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login | MARUS</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div class="auth-box">
+
+    <form method="post">
+      {% csrf_token %}
+      <input name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+      <button>Login</button>
+    </form>
+
+    <p>New user? <a href="/signup/">Signup</a></p>
+</div>
+
+</body>
+</html>
+{% endblock %}

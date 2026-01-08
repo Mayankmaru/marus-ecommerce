@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout | MARUS</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="checkout-body">
+
+<div class="checkout-container">
+
+    <h1 class="brand-title">🌿 MARUS</h1>
+    <p class="brand-tagline">Secure Checkout</p>
+
+     <div class="checkout-card">
+     <h2>Order Summary</h2>
+
+    {% for item in items %}
+      <p>
+        {{ item.product.name }}
+        × {{ item.quantity }}
+        = ₹ {{ item.product.price|add:0 }}
+      </p>
+    {% endfor %}
+
+    <hr>    <h3>Total Amount: ₹ {{ total }}</h3>
+
+    <form method="post">
+        {% csrf_token %}
+
+         <label class="payment-option">
+                <input type="radio" name="pay" checked>
+                <span>UPI (Google Pay / PhonePe)</span>
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="pay">
+                <span>Debit / Credit Card</span>
+            </label>
+
+            <label class="payment-option">
+                <input type="radio" name="pay">
+                <span>Cash on Delivery</span>
+            </label>
+
+
+        <button class="pay-btn">Pay ₹ {{ total }}</button>
+    </form>
+    
+        <p class="secure-text">🔒 100% Secure Demo Payment</p>
+
+</div>  
+
+</div>
+
+</body>
+</html>
+{% endblock %}
