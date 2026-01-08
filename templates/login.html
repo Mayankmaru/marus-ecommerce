@@ -10,16 +10,30 @@
 </head>
 <body>
 
-<div class="auth-box">
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h2>Welcome Back 👋</h2>
+        <p class="auth-sub">Login to continue shopping</p>
 
-    <form method="post">
-      {% csrf_token %}
-      <input name="username" placeholder="Username">
-      <input type="password" name="password" placeholder="Password">
-      <button>Login</button>
-    </form>
+        <form method="post">
+            {% csrf_token %}
 
-    <p>New user? <a href="/signup/">Signup</a></p>
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+
+            <button class="auth-btn">Login</button>
+        </form>
+
+        <p class="auth-footer">
+            New user?
+            <a href="{% url 'signup' %}">Create account</a>
+        </p>
+    </div>
 </div>
 
 </body>

@@ -10,11 +10,34 @@
 </head>
 <body>
 
-<div class="auth-box">
-    <h2>Create Account</h2>
-    <input placeholder="Username">
-    <input type="password" placeholder="Password">
-    <button>Signup</button>
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h2>Create Account 🌿</h2>
+        <p class="auth-sub">Join MARUS Herbal Store</p>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <input type="text" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password1" placeholder="Password" required>
+            </div>
+
+            <div class="form-group">
+                <input type="password" name="password2" placeholder="Confirm Password" required>
+            </div>
+
+            <button class="auth-btn">Signup</button>
+        </form>
+
+        <p class="auth-footer">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+    </div>
 </div>
 
 </body>

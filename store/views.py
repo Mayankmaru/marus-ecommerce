@@ -34,7 +34,7 @@ def signup_page(request):
 
 def logout_page(request):
     logout(request)
-    return redirect('/')
+    return redirect('login')
 
 
 @login_required
